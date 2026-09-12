@@ -1,0 +1,49 @@
+<htmll>
+  <head>
+    <title>Medical Center</title>
+	
+	<style>
+	  body {
+	    background-image:linear-gradient(to right,lightblue, white);
+		text-align:center;
+		font-size:50px;
+	  }
+	  #submit {
+	    width:120px;
+		height:70px;
+	  }
+	</style>
+  </head>
+  <body>
+  
+    <h1>Medical Center</h1>
+	<a target="_blank" href="index.html">live site</a>
+	<p>To get an appointment please fill this form</p>
+     <form id="myForm">
+	    <label for="name">Name</label><br>
+		<input type="text" name="name" value="your name"><br><br>
+		<label for="age">Age</label><br>
+		<input type="text" name="age" value="your age"><br><br>
+		<label for="telephonenumber">telephone number</label><br>
+		<input type="text" name="telephonenumber" value="your number"><br><br>
+		<input id="submit" type="submit" value="Submit">
+	</form>
+	
+	<script>
+		document.getElementById("myForm").addEventListener("submit", function(e) {
+		  e.preventDefault();
+
+		  const data = new FormData(this);
+
+		  fetch("https://script.google.com/macros/s/AKfycbwN-7j883V4r9O1hrsdBxEi9Ls0Yp0sE2mlGlBm3neCSphmiO1hBYIRqWiiF9X245DDPA/exec", {
+			method: "POST",
+			body: data
+		  })
+		  .then(() => {
+			alert("Saved!");
+			this.reset();
+		  });
+		});
+	</script>	
+  </body>
+</html>
