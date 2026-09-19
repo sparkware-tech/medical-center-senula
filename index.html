@@ -1,9 +1,56 @@
 <html>
  <head>
   <title>Medical Center</title>
+			<style>
+			  body {
+				background-color:lightblue;
+			  }
+			  h1 {
+				text-align:center;
+				text-color: black;
+				font-size:80px;
+			  }
+			  p {
+				text-align:center;
+				text-color:red;
+				font-size:50px;
+			  }
+			  th, tr, td {
+				font-size:30px;
+				border:1px solid black;
+			  }
+			</style>
  </head>
   <body>
      <h1>Medical Center</h1>
-	 <a target="_blank"href="Form.html">appointment</a>
-  <body>
+	<p> <a target="_blank"href="Form.html">appointment</a></p>
+	  <table>
+	    <th>Name</th>
+		<th>Age</th>
+		<th>Number</th>
+		<tbody id="tableData"></tbody>
+	  </table>
+	  
+	  <script>
+			fetch("https://script.google.com/macros/s/AKfycbwN-7j883V4r9O1hrsdBxEi9Ls0Yp0sE2mlGlBm3neCSphmiO1hBYIRqWiiF9X245DDPA/exec")
+			.then(response => response.json())
+			.then(data => {
+
+			let html = "";
+
+			// Skip first row (Name, Age)
+			for (let i = 1; i < data.length; i++) {
+			html += `
+			<tr>
+			<td>${data[i][0]}</td>
+			<td>${data[i][1]}</td>
+			<td>${data[i][2]}</td>
+			</tr>
+			`;
+			}
+
+			document.getElementById("tableData").innerHTML = html;
+			});
+	  </script>
+  </body>
 </html>
